@@ -1,0 +1,100 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+td {
+    cursor: pointer;
+}
+
+h1 {
+    text-align: center;
+    font-size: 24px;
+}
+
+.App {
+    max-width: 1000px;
+    width: 90%;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+#notaForm {
+    display: flex;
+    flex-direction: column;
+    margin: 20px 0;
+}
+
+#notaForm input, #notaForm button {
+    margin: 10px 0;
+    padding: 10px;
+    font-size: 16px;
+}
+
+.nota button {
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.nota button:hover {
+    background-color: darkred;
+}
+
+/* Estilos responsivos para dispositivos móveis */
+@media (max-width: 480px) {
+    .App {
+        padding: 10px; /* Reduz o padding em celulares */
+    }
+
+    #notaForm input, #notaForm button {
+        padding: 8px; /* Menor padding nos inputs e botões */
+        font-size: 14px; /* Reduz o tamanho da fonte nos inputs */
+    }
+
+    table, th, td {
+        font-size: 12px; /* Reduz o tamanho da fonte da tabela */
+        padding: 6px; /* Reduz o padding nas células */
+    }
+
+    h1 {
+        font-size: 18px; /* Título menor em dispositivos móveis */
+    }
+}
+
+/* Estilos para os botões de Salvar e Deletar */
+button {
+    padding: 4px 8px; /* Reduz o tamanho do padding */
+    font-size: 14px; /* Tamanho da fonte um pouco menor */
+    border-radius: 10px; /* Botões arredondados, mas menores */
+    border: none; /* Sem bordas adicionais */
+    cursor: pointer;
+}
+
+button.salvar {
+    background-color: #4CAF50; /* Cor verde */
+    color: white;
+}
+
+button.deletar {
+    background-color: #f44336; /* Cor vermelha */
+    color: white;
+}
+
+button.salvar:hover, button.deletar:hover {
+    opacity: 0.85; /* Leve efeito de opacidade */
+}
