@@ -1,41 +1,44 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import MenssagemErro from './componentes/MenssagemErro';
 
 function LeituraNotas() {
     const [notas, setNotas] = useState([]);
+    const [error, setError] = useState(null);
 
     useEffect(() => {
         fetchNotas();
     }, []);
 
     const fetchNotas = () => {
+        setError(null); // Limpa o erro antes de fazer nova tentativa
         fetch('http://127.0.0.1:5000/')
             .then((response) => response.json())
             .then((data) => setNotas(data.Notas))
-            .catch((error) => console.error('Erro ao carregar notas:', error));
+            .catch(() => setError('Erro ao carregar notas'));
     };
 
     const removerNota = (id) => {
-        fetch('http://127.0.0.1:5000/', {
+        fetch(`http://127.0.0.1:5000/${id}`, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ id }),
         })
-            .then((response) => {
-                if (response.ok) {
-                    fetchNotas();
-                } else {
-                    console.error('Erro ao deletar nota.');
-                }
-            })
-            .catch((error) => console.error('Erro ao deletar nota:', error));
+        .then((response) => {
+            if (response.ok) {
+                fetchNotas();
+            } else {
+                setError('Erro ao deletar nota');
+            }
+        })
+        .catch(() => setError('Erro ao deletar nota: verifique a conexão'));
     };
 
     return (
         <div className="container">
             <h1>Leitura de Notas</h1>
+            {error && <MenssagemErro message={error} />}
             <Link to="/adicionar">
                 <button className="adicionar">Adicionar Nota</button>
             </Link>

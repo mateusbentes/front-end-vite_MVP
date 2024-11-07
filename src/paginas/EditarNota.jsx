@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import FormularioNota from './componentes/FormularioNota';
 import { useNavigate, useParams } from 'react-router-dom';
+import LoadingSpinner from './componentes/CarregandoSpinner';
 
 function EditarNota() {
     const { id } = useParams();
@@ -52,7 +53,8 @@ function EditarNota() {
     return (
         <div className="App">
             <h1>Editar Nota</h1>
-            <FormularioNota
+            {loading && <LoadingSpinner />}
+            <FormularioNota 
                 titulo={titulo}
                 setTitulo={setTitulo}
                 texto={texto}
@@ -62,7 +64,7 @@ function EditarNota() {
                 buttonLabel="Editar"
             />
         </div>
-    );
+    );   
 }
 
 export default EditarNota;

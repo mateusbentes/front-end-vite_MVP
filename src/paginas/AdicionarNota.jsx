@@ -1,16 +1,20 @@
 import React, { useState } from 'react';
 import FormularioNota from './componentes/FormularioNota';
 import { useNavigate } from 'react-router-dom';
+import LoadingSpinner from './componentes/CarregandoSpinner';
+import MenssagemErro from './componentes/MenssagemErro';
 
 function AdicionarNota() {
     const [titulo, setTitulo] = useState('');
     const [texto, setTexto] = useState('');
     const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(null);
     const navigate = useNavigate();
 
     const adicionarNota = (e) => {
         e.preventDefault();
         setLoading(true);
+        setError(null);
 
         fetch('http://127.0.0.1:5000/', {
             method: 'POST',
@@ -19,24 +23,26 @@ function AdicionarNota() {
             },
             body: JSON.stringify({ titulo, texto }),
         })
-            .then((response) => {
-                if (response.ok) {
-                    navigate('/'); // Redireciona após adicionar a nota
-                } else {
-                    console.error('Erro ao adicionar nota');
-                }
-                setLoading(false);
-            })
-            .catch((error) => {
-                console.error('Erro ao adicionar nota:', error);
-                setLoading(false);
-            });
+        .then((response) => {
+            setLoading(false);
+            if (response.ok) {
+                navigate('/');
+            } else {
+                setError('Erro ao adicionar nota: verifique a resposta do servidor');
+            }
+        })
+        .catch(() => {
+            setLoading(false);
+            setError('Erro ao adicionar nota: verifique a conexão');
+        });
     };
 
     return (
         <div className="App">
             <h1>Adicionar Nota</h1>
-            <FormularioNota
+            {loading && <LoadingSpinner />}
+            {error && <MenssagemErro message={error} />}
+            <FormularioNota 
                 titulo={titulo}
                 setTitulo={setTitulo}
                 texto={texto}
