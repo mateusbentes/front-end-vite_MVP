@@ -5,40 +5,48 @@ import MenssagemErro from './componentes/MenssagemErro';
 function LeituraNotas() {
     const [notas, setNotas] = useState([]);
     const [error, setError] = useState(null);
+    const [feedbackMessage, setFeedbackMessage] = useState(''); // Novo estado para feedback
 
     useEffect(() => {
         fetchNotas();
     }, []);
 
     const fetchNotas = () => {
-        setError(null); // Limpa o erro antes de fazer nova tentativa
         fetch('http://127.0.0.1:5000/')
             .then((response) => response.json())
             .then((data) => setNotas(data.Notas))
             .catch(() => setError('Erro ao carregar notas'));
     };
 
-    const removerNota = (id) => {
-        fetch(`http://127.0.0.1:5000/${id}`, {
+    const remocaoNota = (id) => {
+        fetch('http://127.0.0.1:5000/', {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',
             },
+            body: JSON.stringify({ id: id }),
         })
-        .then((response) => {
+        .then(response => {
             if (response.ok) {
-                fetchNotas();
+                setFeedbackMessage('Nota deletada com sucesso!');
+                fetchNotas(); // Atualiza as notas após a exclusão
             } else {
-                setError('Erro ao deletar nota');
+                setFeedbackMessage('Erro ao deletar nota. Verifique o ID.');
             }
         })
-        .catch(() => setError('Erro ao deletar nota: verifique a conexão'));
+        .catch(() => {
+            setFeedbackMessage('Erro ao deletar nota: verifique a conexão');
+        });
+
+        // Limpa a mensagem após alguns segundos
+        setTimeout(() => setFeedbackMessage(''), 3000);
     };
 
     return (
         <div className="container">
-            <h1>Leitura de Notas</h1>
+            <h1>Bloco de Notas</h1>
             {error && <MenssagemErro message={error} />}
+            {feedbackMessage && <div className="feedback">{feedbackMessage}</div>}
             <Link to="/adicionar">
                 <button className="adicionar">Adicionar Nota</button>
             </Link>
@@ -62,7 +70,10 @@ function LeituraNotas() {
                                 </Link>
                             </td>
                             <td>
-                                <button className="deletar" onClick={() => removerNota(nota.id)}>
+                                <button
+                                    className="deletar"
+                                    onClick={() => remocaoNota(nota.id)}
+                                >
                                     Deletar
                                 </button>
                             </td>
