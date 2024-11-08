@@ -1,7 +1,6 @@
 const express = require('express');
 const cors = require('cors');
 const fs = require('fs');
-const path = require('path');
 const bodyParser = require('body-parser');
 const app = express();
 const PORT = 5000;
@@ -27,12 +26,18 @@ function salvarNotasEmArquivo() {
 
 // Função para carregar as notas de um arquivo JSON
 function carregarNotasDoArquivo() {
-  try {
-    const dados = fs.readFileSync(arquivoNotas, 'utf-8');
-    notas = JSON.parse(dados).Notas;
-  } catch (err) {
-    console.error("Erro ao carregar notas:", err);
-    notas = []; // Se o arquivo não existir, começa com um array vazio
+  // Verifica se o arquivo existe
+  if (fs.existsSync(arquivoNotas)) {
+    try {
+      const dados = fs.readFileSync(arquivoNotas, 'utf-8');
+      notas = JSON.parse(dados).Notas;
+    } catch (err) {
+      console.error("Erro ao carregar notas:", err);
+      notas = []; // Se o arquivo não for válido, começa com um array vazio
+    }
+  } else {
+    // Se o arquivo não existir, cria um arquivo vazio
+    salvarNotasEmArquivo();
   }
 }
 
