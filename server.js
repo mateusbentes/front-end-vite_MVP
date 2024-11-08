@@ -39,14 +39,16 @@ function salvarNotasEmArquivo() {
 // Função para carregar as notas de um arquivo JSON
 function carregarNotasDoArquivo() {
   if (fs.existsSync(arquivoNotas)) {
+     // Verifica se o arquivo existe
     try {
       const dados = fs.readFileSync(arquivoNotas, 'utf-8');
       notas = JSON.parse(dados).Notas;
     } catch (err) {
       console.error("Erro ao carregar notas:", err);
-      notas = [];
+      notas = []; // Se o arquivo não for válido, começa com um array vazio
     }
   } else {
+    // Se o arquivo não existir, cria um arquivo vazio
     salvarNotasEmArquivo();
   }
 }
@@ -66,12 +68,15 @@ const obterTodasNotas = () => {
 const adicionarNota = (titulo, texto) => {
   return new Promise((resolve, reject) => {
     const novaNota = { 
-      id: notas.length + 1, 
+      id: notas.length + 1, // Gerando um ID simples (pode ser alterado)
       titulo,
       texto 
     };
     notas.push(novaNota);
+
+    // Atualizando o arquivo JSON
     salvarNotasEmArquivo();
+    
     resolve(novaNota);
   });
 };
