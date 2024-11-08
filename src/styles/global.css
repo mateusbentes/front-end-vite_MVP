@@ -72,12 +72,27 @@ button {
 
 /* Botão azul para adicionar */
 button.adicionar {
-    background-color: #008CBA; /* Cor azul */
-    color: white;
+    width: 100%;
+    max-width: 1000px; /* Ajuste esse valor para o limite máximo desejado */
+    padding: 12px;
+    font-size: 16px;
+    background-color: #008CBA;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-align: center;
 }
 
 button.adicionar:hover {
     background-color: #005f73; /* Cor azul mais escuro no hover */
+}
+
+.container {
+    max-width: 1000px; /* Ajuste o limite conforme necessário */
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
 }
 
 /* Botão verde para salvar */
