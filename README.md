@@ -32,10 +32,16 @@ para compilar o projeto para produção. Para rodar como ambiente de desenvolvim
 $ npm run dev
 ```
 
-Para rodar o servidor com express (opcional para Node.js) digite o comando:
+Para rodar o servidor com express (opcional para Node.js) digite o comando, ele cria o arquivo notas.json:
 
 ```
 $ node server.js
+```
+
+Lembre-se que o arquivo notas.json deve ter permissão de ecrita, então deve ser colocada a permisão como:
+
+```
+$ chmod 666 notas.json
 ```
 
 Abra [http://localhost:3000](http://localhost:3000) para ver no seu navegador.
