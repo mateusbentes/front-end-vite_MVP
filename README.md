@@ -10,6 +10,12 @@ O objetivo aqui é criar um aplicativo web de bloco de notas que consulte, adici
 No diretório raiz do projeto digite:
 
 ```
+$ npm install
+```
+
+e
+
+```
 $ npm run dev
 ```
 

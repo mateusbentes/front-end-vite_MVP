@@ -76,7 +76,7 @@ button.adicionar {
     max-width: 1000px; /* Ajuste esse valor para o limite máximo desejado */
     padding: 12px;
     font-size: 16px;
-    background-color: #008CBA;
+    background-color: #008CBA; /* Cor azul */
     color: #fff;
     border: none;
     border-radius: 4px;
