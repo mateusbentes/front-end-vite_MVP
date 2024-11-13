@@ -10,12 +10,13 @@ function FormularioNota({ titulo, setTitulo, texto, setTexto, onSubmit, loading,
                 placeholder="Título"
                 required
             />
-            <textarea
+            <input
+                type="text"
                 value={texto}
                 onChange={(e) => setTexto(e.target.value)}
                 placeholder="Texto"
                 required
-            ></textarea>
+            />
             <button type="submit" className="salvar" disabled={loading || !titulo || !texto}>
                 {buttonLabel}
             </button>
