@@ -32,18 +32,24 @@ para compilar o projeto para produção. Para rodar como ambiente de desenvolvim
 $ npm run dev
 ```
 
-Para rodar o servidor com express (opcional para Node.js) digite o comando, ele cria o arquivo notas.json:
+Para rodar a simulação de um servidor com express (opcional, apenas use se não utilizar o backend) para Node.js digite o comando, ele cria o arquivo notas.json:
 
 ```
 $ node server.js
 ```
 
-Lembre-se que o arquivo notas.json deve ter permissão de ecrita, então deve ser colocada a permisão como:
+Lembre-se que quando rodar o server.js o arquivo notas.json deve ter permissão de ecrita, então deve ser interrompido o processo e ser colocada a permisão como:
 
 ```
 $ chmod 666 notas.json
 ```
 
+e depois rodar de novo o servidor:
+
+```
+$ node server.js
+```
+
 Abra [http://localhost:3000](http://localhost:3000) para ver no seu navegador.
 
-Link do Figma:
+Link do Figma: https://www.figma.com/proto/cNQuLQHLDOdu3XN9OzXqc4?node-id=0-1&t=vy18oWF0I0KV0xZQ-6
