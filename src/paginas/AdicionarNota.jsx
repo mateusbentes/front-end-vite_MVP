@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import FormularioNota from './componentes/FormularioNota';
+import FormularioNota from '../componentes/FormularioNota';
 import { useNavigate } from 'react-router-dom';
-import LoadingSpinner from './componentes/CarregandoSpinner';
-import MenssagemErro from './componentes/MenssagemErro';
+import LoadingSpinner from '../componentes/CarregandoSpinner';
+import MenssagemErro from '../componentes/MenssagemErro';
 
 function AdicionarNota() {
     const [titulo, setTitulo] = useState('');

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import MenssagemErro from './componentes/MenssagemErro';
+import MenssagemErro from '../componentes/MenssagemErro';
 
 function LeituraNotas() {
     const [notas, setNotas] = useState([]);
