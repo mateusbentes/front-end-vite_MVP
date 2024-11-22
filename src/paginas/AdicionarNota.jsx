@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import FormularioNota from '../componentes/FormularioNota';
 import { useNavigate } from 'react-router-dom';
-import LoadingSpinner from '../componentes/CarregandoSpinner';
+import LoadingSpinner from '../componentes/LoadingSpinner';
 import MenssagemErro from '../componentes/MenssagemErro';
 
 function AdicionarNota() {

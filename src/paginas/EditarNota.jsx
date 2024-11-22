@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import FormularioNota from '../componentes/FormularioNota';
 import { useNavigate, useParams } from 'react-router-dom';
-import LoadingSpinner from '../componentes/CarregandoSpinner';
+import LoadingSpinner from '../componentes/LoadingSpinner';
 
 function EditarNota() {
     const { id } = useParams();
